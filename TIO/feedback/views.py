@@ -1,18 +1,43 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-# Create your views here.
+from .forms import FeedbackForm
+
+#! Django Form Method 
 def feedback(req):
     if req.method == "POST":
-        field_name = req.POST['name']
-        field_email = req.POST['email']
-        field_message = req.POST['message']
-        print(f'name: {field_name}\nemail: {field_email}\nmessage: {field_message}')
-        return HttpResponseRedirect("/confirmation")
+        form = FeedbackForm(req.POST)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponseRedirect("/confirmation")
+
+    else:
+        form = FeedbackForm()
+
+    return render(req, "feedback/feedback.html", {
+        "form": form
+    })
+
+#! nonDjango Form Method - also valid
+# def feedback(req):
+#     if req.method == "POST":
+#         field_name = req.POST['name']
+#         field_email = req.POST['email']
+#         field_message = req.POST['message']
+
+#         if field_name == "" or len(field_message) < 10:
+#             return render(req, "feedback/feedback.html", {
+#                 "has_error": True
+#             })
+#         print(f'name: {field_name}\nemail: {field_email}\nmessage: {field_message}')
+#         return HttpResponseRedirect("/confirmation")
 
 
-    # elif req.method == "GET":
-    return render(req, "feedback/feedback.html")
+#     # elif req.method == "GET":
+#     return render(req, "feedback/feedback.html", {
+#                 "has_error": False
+#             })
 
 
 def callConfirmation(req):
