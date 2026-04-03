@@ -7,18 +7,14 @@ from .models import Feedback
 #! Django Form Method 
 def feedback(req):
     if req.method == "POST":
-        #* instance and existing data not required - use for modifying data prior to saving
-        existing_data = Feedback.objects.get(pk=1)
-        form = FeedbackForm(req.POST, instance=existing_data)
-
+        form = FeedbackForm(req.POST)
 
         if form.is_valid():
             print(form.cleaned_data)
-            # feedback = Feedback(name=form.cleaned_data['name'],
-            # email=form.cleaned_data['email'],
-            # message=form.cleaned_data['message'])
-            # feedback.save()
-            form.save()
+            feedback = Feedback(name=form.cleaned_data['name'],
+            email=form.cleaned_data['email'],
+            message=form.cleaned_data['message'])
+            feedback.save()
             return HttpResponseRedirect("/confirmation")
 
     else:

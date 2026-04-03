@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+}
+
+form {
+  margin: 3rem auto;
+  width: 90%;
+  min-width: 40rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+}
+
+button::hover,
+button::active {
+  background-color: purple;
+  border-color: aqua;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+.form-control input {
+  padding: 0.25em;
+  border-radius: 4px;
+  border: 2px solid green;
+  display: block;
+  width: 10rem;
+}
+.form-control input :focus {
+  border-color: navy;
+  background-color: beige;
+  outline: none;
+}
+.form-control label {
+  font-weight: 700;
+  display: block;
+}
+
+.errorlist {
+  list-style: none;
+  margin: 0.5em;
+  padding: 0;
+  color: maroon;
+}
+
+.errors input {
+  border-color: maroon;
+  background-color: bisque;
+}
+.errors label {
+  color: maroon;
+}/*# sourceMappingURL=style.css.map */

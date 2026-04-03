@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'feedback/style.css' %}" />
+    <title>Feedback</title>
+  </head>
+  <body>
+    <h1>Feedback Form</h1>
+    <form action="/" method="POST">
+      {% csrf_token %}
+      <!--
+       {% if has_error %}
+       <h4 style="color: red">
+        Invalid form - Message must have at least 10 characters.
+      </h4>
+      {% endif %}-->
+
+      {% for field in form %}
+      <div class="form-control {% if field.errors %} errors {% endif %}">
+        {{ field.label_tag }} {{ field }} {{field.errors}}
+      </div>
+      {% endfor %}
+
+      <!-- ! moved to for loop
+      <div class="form-control {% if form.name.errors %} error {% endif %}">
+        {{ form.name.label_tag }} {{ form.name}} {{form.name.errors}}
+      </div>
+      <div class="form-control {% if form.email.errors %} error {% endif %}">
+        {{ form.email.label_tag }} {{ form.email}} {{form.email.errors}}
+      </div>
+      <div class="form-control {% if form.message.errors %} error {% endif %}">
+        {{ form.message.label_tag }} {{ form.message}} {{form.message.errors}}
+      </div> -->
+
+      <!-- <label for="name">Name</label>
+      <input type="text" name="name" id="name" required />
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+      <label for="message">message</label>
+      <input type="text" name="message" id="message" required /> -->
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
