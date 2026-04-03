@@ -17,6 +17,9 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data["email"]
-        if Registration.objects.filter(email=email).exists():
+        query = Registration.objects.filter(email=email)
+        if self.instance.pk:
+            query = query.exclude(pk=self.instance.pk)
+        if query.exists():
             raise ValidationError("That email is already registered.")
         return email

@@ -9,7 +9,7 @@ class Event(models.Model):
         return self.name
 
 class Registration(models.Model):
-    full_name = models.CharField( max_length=20)
+    full_name = models.CharField(max_length=20)
     email = models.EmailField(max_length=254, default="")
     contact_number = models.CharField(max_length=15, default="")
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default="")

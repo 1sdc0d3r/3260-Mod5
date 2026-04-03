@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import UpdateView, DeleteView
 
 from .forms import RegistrationForm
-# from .models import Registration
+from .models import Registration
 
 class RegistrationView(View):
     def get(self,req):
@@ -22,23 +23,22 @@ class RegistrationView(View):
             return HttpResponseRedirect("/confirmation")
         return render(req, "registration/registration.html", {"form": form})
 
-# def registration(req):
-#     if req.method == "POST":
+class ParticipantsView(View):
+    def get(self,req):
+        people = Registration.objects.all()
+        return render(req, "registration/participants.html", {"people": people})
 
-#         # form_email = req.POST['email']
-#         # if len(Registration.objects.filter(email=form_email)):
-#         form = RegistrationForm(req.POST)
 
-#         if form.is_valid():
-#             print(form.cleaned_data)
-#             form.save()
-#             return HttpResponseRedirect("/confirmation")
-#     else:
-#         form = RegistrationForm()
+class ParticipantUpdateView(UpdateView):
+    model = Registration
+    form_class = RegistrationForm
+    template_name = "registration/editParticipant.html"
+    success_url = "/participants"
 
-#     return render(req, "registration/registration.html", {
-#         "form": form
-#     })
+class ParticipantDeleteView(DeleteView):
+    model = Registration
+    template_name = "registration/deleteConfirmation.html"
+    success_url = "/participants"
 
 
 def callConfirmation(req):

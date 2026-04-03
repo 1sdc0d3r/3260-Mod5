@@ -5,11 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'registration/style.css' %}" />
-    <title>Registration Form</title>
+    <title>Edit Participant Form</title>
   </head>
   <body class="registration">
-    <h1>Registration Form</h1>
-    <form action="/" method="POST">
+    <h1>Edit Participant Form</h1>
+    <form method="post" action="">
       {% csrf_token %} {% for field in form %}
       <div class="form-control {% if field.errors %} errors {% endif %}">
         {{ field.label_tag }} {{ field }} {{field.errors}}

@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}" />
+    <title>Participants</title>
+  </head>
+  <body class="participants">
+    <h1>Participants</h1>
+    <form action="/" method="POST">
+      {% csrf_token %}
+      <table>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Event</th>
+        <th>Dietary</th>
+
+        {% for person in people %}
+        <tr>
+          <td>{{ person.full_name }}</td>
+          <td>{{ person.email }}</td>
+          <td>{{ person.phone }}</td>
+          <td>{{ person.event }}</td>
+          <td>{{ person.dietary }}</td>
+          <td>
+            <a href="{% url 'participant_edit' person.pk %}">edit</a>
+          </td>
+          <td><a href="{% url 'participant_delete' person.pk %}">delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </form>
+  </body>
+</html>

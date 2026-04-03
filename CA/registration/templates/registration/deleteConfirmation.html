@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}" />
+    <title>Delete Participant</title>
+  </head>
+  <body class="deleteConfirmation">
+    <h1>Delete Participant Confirmation</h1>
+    <p>Are you sure you want to delete {{ object.full_name }}?</p>
+    <form method="post" action="">
+      {% csrf_token %}
+      <button type="submit">Yes</button>
+      <a href="/participants">No</a>
+    </form>
+  </body>
+</html>
