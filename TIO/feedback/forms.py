@@ -6,5 +6,5 @@ class FeedbackForm(forms.Form):
         "required": "Your name must not be empty.",
         "max_length": "Please enter a shorter name."
     })
-    email = forms.EmailField(required=True)
-    message = forms.CharField(max_length=250, required=True)
+    email = forms.EmailField(label='Email', required=True)
+    message = forms.CharField(label='Message', max_length=250, required=True)

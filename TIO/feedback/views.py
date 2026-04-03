@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from .forms import FeedbackForm
+from .models import Feedback
 
 #! Django Form Method 
 def feedback(req):
@@ -10,6 +11,10 @@ def feedback(req):
 
         if form.is_valid():
             print(form.cleaned_data)
+            feedback = Feedback(name=form.cleaned_data['name'],
+            email=form.cleaned_data['email'],
+            message=form.cleaned_data['message'])
+            feedback.save()
             return HttpResponseRedirect("/confirmation")
 
     else:
