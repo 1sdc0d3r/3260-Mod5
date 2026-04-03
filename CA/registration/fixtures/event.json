@@ -1,0 +1,22 @@
+[
+  {
+    "model": "registration.event",
+    "pk": 1,
+    "fields": { "name": "Cooking" }
+  },
+  {
+    "model": "registration.event",
+    "pk": 2,
+    "fields": { "name": "Long Jump" }
+  },
+  {
+    "model": "registration.event",
+    "pk": 3,
+    "fields": { "name": "Corn Hole" }
+  },
+  {
+    "model": "registration.event",
+    "pk": 4,
+    "fields": { "name": "Spelling Bee" }
+  }
+]

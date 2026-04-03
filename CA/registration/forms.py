@@ -1,10 +1,12 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import Registration
+
 
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = Registration
-        # fields = []
         fields = "__all__"
         # exclude = ['field_name']
         labels = {
@@ -12,7 +14,9 @@ class RegistrationForm(forms.ModelForm):
             'email': 'Email',
             'contact_number': 'Phone',
         }
-        # error_messages={
-        #     "required": "Your name must not be empty.",
-        #     "max_length": "Please enter a shorter name."
-        # }
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if Registration.objects.filter(email=email).exists():
+            raise ValidationError("That email is already registered.")
+        return email
