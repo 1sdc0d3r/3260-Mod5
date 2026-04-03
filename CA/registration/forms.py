@@ -1,9 +1,18 @@
 from django import forms
+from .models import Registration
 
-class RegistrationForm(forms.Form):
-    name = forms.CharField(label='Name', max_length=20, error_messages={
-        "required": "Your name must not be empty.",
-        "max_length": "Please enter a shorter name."
-    })
-    email = forms.EmailField(label='Email', required=True)
-    message = forms.CharField(label='Message', max_length=250, required=True)
+class RegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Registration
+        # fields = []
+        fields = "__all__"
+        # exclude = ['field_name']
+        labels = {
+            'full_name': 'Full Name',
+            'email': 'Email',
+            'contact_number': 'Phone',
+        }
+        # error_messages={
+        #     "required": "Your name must not be empty.",
+        #     "max_length": "Please enter a shorter name."
+        # }

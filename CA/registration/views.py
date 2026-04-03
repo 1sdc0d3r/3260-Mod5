@@ -4,7 +4,6 @@ from django.shortcuts import render
 from .forms import RegistrationForm
 from .models import Registration
 
-#! Django Form Method 
 def registration(req):
     if req.method == "POST":
         form = RegistrationForm(req.POST)
@@ -14,6 +13,7 @@ def registration(req):
             entry = Registration(name=form.cleaned_data['name'],
             email=form.cleaned_data['email'],
             message=form.cleaned_data['message'])
+
             entry.save()
             return HttpResponseRedirect("/confirmation")
 
